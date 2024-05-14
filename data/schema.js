@@ -7,7 +7,8 @@ const schema = buildSchema(`
     description: String,
     price: Float,
     soldout: Boolean,
-    stores: [ Store ]!
+    orderstatus: OrderStatus
+    stores: [ Store ]!,
   }
 
   type Store {
@@ -15,9 +16,31 @@ const schema = buildSchema(`
   }
 
   type Query {
+    getProduct(id: ID): Product
+  }
+
+  enum OrderStatus {
+    DELIVERED
+    SHIPPED
+    DISPATCHED
+  }
+
+  input ProductInput {
+    id: ID,
     name: String,
-    about: String,
-    product: Product
+    description: String,
+    price: Float,
+    soldout: Boolean,
+    orderstatus: OrderStatus
+    stores: [ StoreInput ]!
+  }
+
+  input StoreInput {
+    place: String
+  }
+
+  type Mutation {
+    createProduct(input: ProductInput) : Product
   }
 
 `)
