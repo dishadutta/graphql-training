@@ -41,8 +41,13 @@ const schema = buildSchema(`
 
   type Mutation {
     createProduct(input: ProductInput) : Product
+    updateProduct(input: ProductInput) : Product
+    deleteProduct(id: ID!): String
   }
 
 `)
 
 export default schema
+
+//this will also delete the product but this method wont throw any deleted product message instead it will provide in getProduct value as null
+// deleteProduct(input: ProductInput) : Product -> adding this instead of deleteProduct
