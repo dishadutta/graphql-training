@@ -16,7 +16,8 @@ const schema = buildSchema(`
   }
 
   type Query {
-    getProduct(id: ID): Product
+    getProduct(id: ID): Product,
+    getAllProduct: [Product]
   }
 
   enum OrderStatus {

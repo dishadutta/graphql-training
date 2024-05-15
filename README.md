@@ -1,5 +1,13 @@
 # graphql-training
 
+## to start the mongodb server
+
+brew services start mongodb-community
+
+## to stop the mongodb server
+
+brew services stop mongodb-community
+
 ### command for createProduct -
 
 mutation {
@@ -52,6 +60,46 @@ mutation {
 deleteProduct(id: "6644f1ea6fafc31eeb525af4")
 }
 
-### to start the mongodb server run the below command
+### command to get all products
 
-brew services start mongodb-community
+query {
+getAllProduct {
+name
+description
+orderstatus
+}
+}
+
+### querying with alias
+
+query {
+aliasOne: getProduct(id: "6644eab9012d34be80a677b8") {
+price
+stores {
+place
+}
+}
+aliasTwo: getProduct(id: "6644eb33012d34be80a677bb") {
+name
+}
+}
+
+### querying with fragments
+
+query {
+aliasOne: getProduct(id: "6644eab9012d34be80a677b8") {
+... productFragment
+}
+aliasTwo: getProduct(id: "6644eb33012d34be80a677bb") {
+... productFragment
+}
+allProducts: getAllProduct {
+... productFragment
+}
+}
+
+fragment productFragment on Product {
+name
+description
+price
+}

@@ -9,6 +9,13 @@ const resolvers = {
       throw new Error(error)
     }
   },
+  getAllProduct: async ({}) => {
+    try {
+      return await Widgets.find({})
+    } catch (error) {
+      throw new Error()
+    }
+  },
   createProduct: async ({ input }) => {
     const newWidget = new Widgets({
       name: input.name,
