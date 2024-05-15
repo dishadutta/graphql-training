@@ -31,7 +31,7 @@ const schema = buildSchema(`
     description: String,
     price: Float,
     soldout: Boolean,
-    orderstatus: OrderStatus
+    orderstatus: OrderStatus,
     stores: [ StoreInput ]!
   }
 
